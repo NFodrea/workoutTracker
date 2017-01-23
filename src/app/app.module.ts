@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { WorkoutsPage } from '../pages/workouts/workouts';
 import { LoginPage } from '../pages/login/login';
-import { SignUpPage } from '../pages/sign-up/sign-up';
+import { SignupPage } from '../pages/sign-up/sign-up';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 
 //import provider
@@ -43,7 +43,7 @@ const myFirebaseAuthConfig = {
     TabsPage,
     WorkoutsPage,
     LoginPage,
-    SignUpPage,
+    SignupPage,
     ResetPasswordPage
   ],
   imports: [
@@ -59,7 +59,7 @@ const myFirebaseAuthConfig = {
     TabsPage,
     WorkoutsPage,
     LoginPage,
-    SignUpPage,
+    SignupPage,
     ResetPasswordPage
   ],
   providers: [

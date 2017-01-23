@@ -5,30 +5,32 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 // import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login'
+import { WorkoutsPage } from '../pages/workouts/workouts'
 
 import { AngularFire } from 'angularfire2';
 
-@Component({
-  template: `<ion-nav [root]="rootPage"></ion-nav>`
-})
-export class MyApp {
-  rootPage: any;
-  // rootPage: any = TabsPage;
+  @Component({
+    template: `<ion-nav [root]="rootPage"></ion-nav>`
+  })
+  export class MyApp {
+    rootPage: any;
 
-  constructor(platform: Platform, af: AngularFire) {
-    af.auth.subscribe( user => {
-      if (user) {
-        this.rootPage = TabsPage;
-      } else {
-        this.rootPage = LoginPage;
-      }
-    });
+    constructor(platform: Platform, af: AngularFire) {
+      const authObserver = af.auth.subscribe( user => {
+        if (user) {
+          this.rootPage = WorkoutsPage;
+          authObserver.unsubscribe();
+        } else {
+          this.rootPage = LoginPage;
+          authObserver.unsubscribe();
+        }
+      });
 
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
-      Splashscreen.hide();
-    });
+      platform.ready().then(() => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        StatusBar.styleDefault();
+        Splashscreen.hide();
+      });
+    }
   }
-}

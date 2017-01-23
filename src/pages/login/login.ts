@@ -1,31 +1,27 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
-import {LoadingController, AlertController} from 'ionic-angular';
-import {FormBuilder, Validators} from '@angular/forms';
+import {
+    NavController,
+    LoadingController,
+    AlertController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthData } from '../../providers/auth-data';
-import { EmailValidator } from '../../validators/email';
 import { WorkoutsPage } from '../workouts/workouts';
-import { SignUpPage } from '../sign-up/sign-up';
+import { SignupPage } from '../sign-up/sign-up';
 import { ResetPasswordPage } from '../reset-password/reset-password';
+import { EmailValidator } from '../../validators/email';
 
-/*
- Generated class for the Login page.
-
- See http://ionicframework.com/docs/v2/components/#navigation for more info on
- Ionic pages and navigation.
- */
 @Component({
     selector: 'page-login',
-    templateUrl: 'login.html'
+    templateUrl: 'login.html',
 })
 export class LoginPage {
-    loginForm: any;
+    public loginForm: any;
     emailChanged: boolean = false;
     passwordChanged: boolean = false;
     submitAttempt: boolean = false;
-    loading: any;
+    public loading: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public authData: AuthData,
+    constructor(public nav: NavController, public authData: AuthData,
                 public formBuilder: FormBuilder, public alertCtrl: AlertController,
                 public loadingCtrl: LoadingController) {
 
@@ -35,9 +31,8 @@ export class LoginPage {
             password: ['', Validators.compose([Validators.minLength(6),
                 Validators.required])]
         });
-
-
     }
+
     elementChanged(input){
         let field = input.inputControl.name;
         this[field + "Changed"] = true;
@@ -51,44 +46,31 @@ export class LoginPage {
         } else {
             this.authData.loginUser(this.loginForm.value.email,
                 this.loginForm.value.password).then( authData => {
-                this.navCtrl.setRoot(WorkoutsPage);
+                this.loading.dismiss().then ( () => {
+                    this.nav.setRoot(WorkoutsPage);
+                })
             }, error => {
                 this.loading.dismiss().then( () => {
                     let alert = this.alertCtrl.create({
                         message: error.message,
-                        buttons: [
-                            {
-                                text: "Ok",
-                                role: 'cancel'
-                            }
-                        ]
+                        buttons: [{ text: "Ok", role: 'cancel' }]
                     });
                     alert.present();
                 });
             });
 
             this.loading = this.loadingCtrl.create({
-                dismissOnPageChange: true,
             });
             this.loading.present();
         }
     }
-    //nav functions
 
     goToResetPassword(){
-        this.navCtrl.push(ResetPasswordPage);
+        this.nav.push(ResetPasswordPage);
     }
 
     createAccount(){
-        this.navCtrl.push(SignUpPage);
-    }
-
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad LoginPage');
+        this.nav.push(SignupPage);
     }
 
 }
-
-
-
