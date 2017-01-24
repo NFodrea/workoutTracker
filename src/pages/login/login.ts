@@ -9,6 +9,7 @@ import { WorkoutsPage } from '../workouts/workouts';
 import { SignupPage } from '../sign-up/sign-up';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { EmailValidator } from '../../validators/email';
+import {TabsPage} from "../tabs/tabs";
 
 @Component({
     selector: 'page-login',
@@ -47,7 +48,7 @@ export class LoginPage {
             this.authData.loginUser(this.loginForm.value.email,
                 this.loginForm.value.password).then( authData => {
                 this.loading.dismiss().then ( () => {
-                    this.nav.setRoot(WorkoutsPage);
+                    this.nav.setRoot(TabsPage);
                 })
             }, error => {
                 this.loading.dismiss().then( () => {

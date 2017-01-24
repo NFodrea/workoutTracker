@@ -7,7 +7,6 @@ import {Component} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {AuthData} from '../../providers/auth-data';
 import {EmailValidator} from '../../validators/email';
-import {WorkoutsPage} from '../workouts/workouts'
 import {LoginPage} from "../login/login";
 @Component({
     selector: 'page-sign-up',
