@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{workout?.name}}</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="showOptions(workout?.$key)">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            Workout Information
+        </ion-card-header>
+        <ion-list>
+            <ion-item>
+                <ion-icon color="secondary" name="information-circle" item-left>
+                </ion-icon>
+                {{workout?.name}}
+            </ion-item>
+            <ion-item>
+                <ion-icon color="secondary" name="information-circle" item-left>
+                </ion-icon>
+                {{workout?.weight}}
+            </ion-item>            <ion-item>
+                <ion-icon color="secondary" name="information-circle" item-left>
+                </ion-icon>
+                {{workout?.sets}}
+            </ion-item>
+            <ion-item>
+                <ion-icon color="favorite" name="cash" item-left></ion-icon>
+                {{workout?.reps}}
+            </ion-item>
+            <ion-item>
+                <ion-icon color="secondary" name="calendar" item-left></ion-icon>
+                <strong>{{workout?.dateComplete}}</strong>
+            </ion-item>
+        </ion-list>
+    </ion-card>
+</ion-content>

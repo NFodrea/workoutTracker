@@ -20,6 +20,9 @@ export class AuthData {
             password: newPassword
         });
     }
+    getUser(){
+        return this.fireAuth;
+    }
 
     resetPassword(email: string): any {
         return firebase.auth().sendPasswordResetEmail(email);

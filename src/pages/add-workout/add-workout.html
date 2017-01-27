@@ -1,0 +1,82 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>New Workout</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <form [formGroup]="newWorkoutForm" (submit)="createWorkout()" novalidate>
+        <ion-item>
+            <ion-label stacked>Workout Name</ion-label>
+            <ion-input #name formControlName="name" type="text"
+                       (change)="elementChanged(name)"
+                       placeholder="name of workout"
+                       [class.invalid]="!newWorkoutForm.controls.name.valid &&
+      (nameChanged || submitAttempt)"></ion-input>
+        </ion-item>
+        <ion-item class="error-message"
+                  *ngIf="!newWorkoutForm.controls.name.valid  &&
+    (nameChanged || submitAttempt)">
+            <p>You need to enter a name for the workout.</p>
+        </ion-item>
+        <ion-item>
+            <ion-label stacked>Weight</ion-label>
+            <ion-input #weight formControlName="weight"
+                       type="number" (change)="elementChanged(weight)"
+                       placeholder="How much weight did you use"
+                       [class.invalid]="!newWorkoutForm.controls.weight.valid &&
+      (weightChanged || submitAttempt)"></ion-input>
+        </ion-item>
+        <ion-item class="error-message"
+                  *ngIf="!newWorkoutForm.controls.weight.valid  &&
+    (weightChanged || submitAttempt)">
+            <p>You need to specify the weight used</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Sets</ion-label>
+            <ion-input #sets formControlName="sets"
+                       type="number" (change)="elementChanged(sets)"
+                       placeholder="How many sets did you do"
+                       [class.invalid]="!newWorkoutForm.controls.sets.valid &&
+      (setsChanged || submitAttempt)"></ion-input>
+        </ion-item>
+        <ion-item class="error-message"
+                  *ngIf="!newWorkoutForm.controls.sets.valid  &&
+    (setsChanged || submitAttempt)">
+            <p>You need to specify the amount of sets completed</p>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label stacked>Reps</ion-label>
+            <ion-input #reps formControlName="reps"
+                       type="number" (change)="elementChanged(reps)"
+                       placeholder="How many reps did you do?"
+                       [class.invalid]="!newWorkoutForm.controls.reps.valid &&
+      (repsChanged || submitAttempt)"></ion-input>
+        </ion-item>
+        <ion-item class="error-message"
+                  *ngIf="!newWorkoutForm.controls.reps.valid  &&
+    (repsChanged || submitAttempt)">
+            <p>You need to specify the amount of rep completed</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Date Done</ion-label>
+            <ion-datetime displayFormat="D MMM, YY"
+                          pickerFormat="DD MMM YYYY" formControlName="dateComplete"
+                          max="2021-12-31" [class.invalid]="!newWorkoutForm.controls.dateComplete.valid
+      && (dateComplete || submitAttempt)">
+            </ion-datetime>
+        </ion-item>
+        <ion-item class="error-message"
+                  *ngIf="!newWorkoutForm.controls.dateComplete.valid &&
+    (dateCompleteChanged || submitAttempt)">
+            <p>When did you complete this workout?</p>
+        </ion-item>
+
+        <button ion-button block type="submit">
+            Create new workout
+        </button>
+    </form>
+</ion-content>

@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 // import { LoginPage } from '../pages/login/login';
-import { TabsPage } from '../pages/tabs/tabs';
+import { WorkoutsPage } from '../pages/workouts/workouts';
 import { LoginPage } from '../pages/login/login'
 
 import { AngularFire } from 'angularfire2';
@@ -17,7 +17,7 @@ export class MyApp {
   constructor(platform: Platform, af: AngularFire) {
     const authObserver = af.auth.subscribe( user => {
       if (user) {
-        this.rootPage = TabsPage;
+        this.rootPage = WorkoutsPage;
         authObserver.unsubscribe();
       } else {
         this.rootPage = LoginPage;

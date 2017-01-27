@@ -1,12 +1,20 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>workouts</ion-title>
-  </ion-navbar>
-
+    <ion-navbar color="primary">
+        <ion-title>
+            Workout List
+        </ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="createWorkout()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
-
-
-<ion-content padding>
-  My workouts
+<ion-content>
+    <ion-list>
+    <ion-item *ngFor="let workout of workouts | async"
+        (click)="workoutDetails(workout.workoutId)">
+        <h2>{{workout.name}}</h2>
+    </ion-item>
+    </ion-list>
 </ion-content>

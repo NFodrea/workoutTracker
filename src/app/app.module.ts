@@ -11,9 +11,13 @@ import { WorkoutsPage } from '../pages/workouts/workouts';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/sign-up/sign-up';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { AddWorkoutPage } from '../pages/add-workout/add-workout';
+import { WorkoutDetailsPage } from  '../pages/workout-details/workout-details'
+
 
 //import provider
 import { AuthData } from '../providers/auth-data'
+import { WorkoutService } from '../providers/workout-service'
 
 //import AF2
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
@@ -44,7 +48,9 @@ const myFirebaseAuthConfig = {
     WorkoutsPage,
     LoginPage,
     SignupPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    AddWorkoutPage,
+    WorkoutDetailsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -60,11 +66,13 @@ const myFirebaseAuthConfig = {
     WorkoutsPage,
     LoginPage,
     SignupPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    AddWorkoutPage,
+    WorkoutDetailsPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthData
+    AuthData, WorkoutService
   ]
 })
 export class AppModule {}
