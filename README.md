@@ -1,4 +1,4 @@
-# Workout Tracker
+# Workout Lift Tracker
 <img src="http://i.imgur.com/QL3agRb.png" alt="Workout Tracker Home" width="300" height="500">
 
 
